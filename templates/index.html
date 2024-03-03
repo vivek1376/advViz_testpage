@@ -8,13 +8,20 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/livereload-js/3.1.0/livereload.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/livereload-js/3.1.0/livereload.min.js"></script> -->
 
 </head>
 <body>
     <!-- <p>&#9733;</p>
     <p style="color:yellow;">&#10024;</p> -->
     <div id="map"></div>
+
+    <!-- <button id="btn">Update trip</button>  -->
+    <!-- <input type="range" min="1613369409000" max="1613537999000" class="slider" id="myRange"> -->
+    <input type="range" min="0" max="168590000" class="slider" id="myRange" style="width: 100%;">
+
+
+
 
     <script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
     <!-- from https://github.com/visgl/deck.gl/blob/8.9-release/docs/get-started/using-standalone.md#using-the-scripting-api -->
