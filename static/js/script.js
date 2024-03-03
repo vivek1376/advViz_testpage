@@ -57,10 +57,28 @@ document.addEventListener('DOMContentLoaded', (event) => {
         });
     }
 
-    getDeckGLMap([]);
 
     d3.csv("/getcsvdata").then(data => {
         console.log(data.length);
+
+        console.log("data[0]:\n", data[0]);
+
+        getDeckGLMap([
+            new deck.ScatterplotLayer({
+                id: 'scatterplot-layer',
+                data: data,
+                pickable: true,
+                opacity: 1,
+                filled: true,
+                radiusScale: 1,
+                radiusMinPixels: 1,
+                radiusMaxPixels: 1,
+                getPosition: d => [parseFloat(d.Longitude), parseFloat(d.Latitude)],
+                getRadius: d => 1,
+                getFillColor: d => [255, 140, 0]
+            })
+        ], 0);
+
     }).catch(error => {
         console.error("Error loading the CSV file:", error);
     });
