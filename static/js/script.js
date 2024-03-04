@@ -27,13 +27,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let deckgl = undefined;
 
     // from observablehq 
-    getDeckGLMap = (layers, pitch) => {
+    getDeckGLMap = (containerid, layers, pitch) => {
         if (pitch === undefined) {
           pitch = 0;
         }
 
         deckgl = new deck.DeckGL({
-            container: 'map',
+            container: containerid,
             map: mapboxgl,
             mapboxAccessToken: '',
             mapboxApiAccessToken: 'pk.eyJ1Ijoidml2ZWsxMzc2MCIsImEiOiJjbHRhdm8wMmUwOWdpMmhteDJtcWdia2F5In0.LgfuVbASMGCbzZe71DbyfQ',
@@ -98,7 +98,107 @@ document.addEventListener('DOMContentLoaded', (event) => {
         console.log("minTimestamp:", minTimestamp);
         console.log("maxTimestamp:", maxTimestamp);
 
-        getDeckGLMap([
+        getDeckGLMap('map1', [
+            new deck.ScatterplotLayer({
+                id: 'scatterplot-layer',
+                data: data,
+                pickable: true,
+                opacity: 1,
+                filled: true,
+                radiusScale: 1,
+                radiusMinPixels: 1,
+                radiusMaxPixels: 1,
+                getPosition: d => [parseFloat(d.Longitude), parseFloat(d.Latitude)],
+                getRadius: d => 1,
+                getFillColor: d => [255, 140, 0]
+            }),
+            
+            // new deck.HeatmapLayer({
+            //     id: 'heatmapLayer',
+            //     data,
+            //     getPosition: d => [parseFloat(d.Longitude), parseFloat(d.Latitude)],
+            //     aggregation: 'SUM',
+            //     radiusPixels: 20,
+            //     colorDomain: [100, 500]
+            // })
+
+            // new deck.HexagonLayer({
+            //     id: 'hexagon-layer',
+            //     data,
+            //     pickable: true,
+            //     extruded: true,
+            //     radius: 50,
+            //     elevationScale: 4,
+            //     colorDomain: [1, 150],
+            //     elevationDomain: [1, 150],
+            //     elevationRange: [0, 500],
+            //     getPosition: d => [parseFloat(d.Longitude), parseFloat(d.Latitude)]
+            // })
+
+            // new deck.PathLayer({
+            //     id: 'path-layer',
+            //     data: trucks,
+            //     pickable: true,
+            //     widthScale: 1,
+            //     widthMinPixels: 1,
+            //     getPath: d => d.path,
+            //     getColor: d => d.color,
+            //     getWidth: d => 1
+            // })
+
+        ], 30);
+
+        getDeckGLMap('map2', [
+            // new deck.ScatterplotLayer({
+            //     id: 'scatterplot-layer',
+            //     data: data,
+            //     pickable: true,
+            //     opacity: 1,
+            //     filled: true,
+            //     radiusScale: 1,
+            //     radiusMinPixels: 1,
+            //     radiusMaxPixels: 1,
+            //     getPosition: d => [parseFloat(d.Longitude), parseFloat(d.Latitude)],
+            //     getRadius: d => 1,
+            //     getFillColor: d => [255, 140, 0]
+            // }),
+            
+            // new deck.HeatmapLayer({
+            //     id: 'heatmapLayer',
+            //     data,
+            //     getPosition: d => [parseFloat(d.Longitude), parseFloat(d.Latitude)],
+            //     aggregation: 'SUM',
+            //     radiusPixels: 20,
+            //     colorDomain: [100, 500]
+            // })
+
+            new deck.HexagonLayer({
+                id: 'hexagon-layer',
+                data,
+                pickable: true,
+                extruded: true,
+                radius: 50,
+                elevationScale: 4,
+                colorDomain: [1, 150],
+                elevationDomain: [1, 150],
+                elevationRange: [0, 500],
+                getPosition: d => [parseFloat(d.Longitude), parseFloat(d.Latitude)]
+            })
+
+            // new deck.PathLayer({
+            //     id: 'path-layer',
+            //     data: trucks,
+            //     pickable: true,
+            //     widthScale: 1,
+            //     widthMinPixels: 1,
+            //     getPath: d => d.path,
+            //     getColor: d => d.color,
+            //     getWidth: d => 1
+            // })
+
+        ], 30);
+
+        getDeckGLMap('map3', [
             // new deck.ScatterplotLayer({
             //     id: 'scatterplot-layer',
             //     data: data,
@@ -191,9 +291,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             // Update the Deck instance with the new layer
             deckgl.setProps({ layers: [updatedTripsLayer] });
         }
-
-        // document.getElementById('btn').onclick = function () {
-        // }
 
     }).catch(error => {
         console.error("Error loading the CSV file:", error);

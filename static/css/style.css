@@ -6,7 +6,7 @@ body {
     font-family: "Inter", sans-serif;
 }
 
-div#map {
+div.deckgl-maps {
     width: 100%;
     /* height: 100%; */
     height: 500px;
