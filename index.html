@@ -9,7 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"> -->    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.css' rel='stylesheet' />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"> -->    
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.css' rel='stylesheet' />
     <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}"> -->
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/livereload-js/3.1.0/livereload.min.js"></script> -->
@@ -22,9 +23,16 @@
         <div class="columns">
             <div class="column col-12">
                 <h1>Deck.gl demo</h1>
+                <p class="h5">
+                    This page has been adapted from the tutorial at 
+                    <a href="https://observablehq.com/@johnhaldeman/tutorial-on-deckgl">https://observablehq.com/@johnhaldeman/tutorial-on-deckgl</a>
+                </p>
                 <div class="card">
                     <div class="card-body">
                         <div class="deckgl-maps" id="map1"></div>
+                    </div>
+                    <div class="card-footer">
+                        Scatterplot visualization showing all datapoints with each plow point being represented by an orange circle.
                     </div>
                 </div>
 
@@ -32,20 +40,26 @@
                     <div class="card-body">
                         <div class="deckgl-maps" id="map2"></div>
                     </div>
+                    <div class="card-footer">
+                        3D visualization showing the plow frequency in the form of an extruded hexagon. The number of points is mapped to both
+                        the height and color of the hexagon.
+                    </div>
                 </div>
 
                 <div class="card">
                     <div class="card-body">
                         <div class="deckgl-maps" id="map3"></div>
-                        <input class="slider" type="range" min="0" max="168590000" class="slider" id="myRange" style="width: 100%;">
+                        <input class="slider" value="0" type="range" min="0" max="168590000" class="slider" id="myRange" style="width: 100%;">
+                    </div>
+                    <div class="card-footer">
+                        This visualization shows individual plow paths covered by each truck in the form of a line trail which can 
+                        be animated by using the slider, showing the plow paths over time.
                     </div>
                 </div>
 
             </div>
         </div>
-        <p class="h5">
-        This page has been adapted from the tutorial at https://observablehq.com/@johnhaldeman/tutorial-on-deckgl
-        </p>
+
     </div>
 
     <!-- <button id="btn">Update trip</button>  -->
@@ -57,7 +71,6 @@
     <!-- Allow the map to render in full screen  -->
     
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <!-- <script src="{{ url_for('static', filename='js/script.js') }}"></script> -->
     <script src="static/js/script.js"></script>
 </body>
 </html>
