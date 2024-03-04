@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     let tripslayer = undefined;
 
-    d3.csv("/getcsvdata").then(data => {
+    d3.csv("/data/snowplow-2021-02-15_2021-02-21_filtered.csv").then(data => {
         console.log(data.length);
 
         console.log("data[0]:\n", data[0]);
